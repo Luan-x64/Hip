@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hipnose</title>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,800" rel="stylesheet">
+    <link rel="icon" href="/img/favicon.ico">
+    <link href="/css/main.css" rel="stylesheet" >
+    <style>
+      body {
+        font-family: 'Montserrat', sans-serif;
+      }
+
+    </style>
+
+
+    
+  </head>
+  <body class="montserrat text-light">
+
+        <header class="masthead mb-auto">
+            <div class="stars"  ></div>
+            <div class="stars2" ></div>
+       
+        <nav id="nav" class="navbar navbar-expand-lg navbar-dark" style="">
+          <a class="navbar-brand aos-init aos-animate" href="#" data-aos-delay="50" data-aos="fade-right">
+            <img src="/img/logo.png" alt="Bootstrap" width="100" height="50">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-controls="collapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapse" style="text-align: center; margin-top: 10px;">
+            <ul id="nav" class="navbar-nav mx-auto">
+              <li class="nav-item aos-init aos-animate" data-aos-delay="10" data-aos="fade-down">
+                <a class="nav-link text-light" href="/">HOME</a>
+              </li>
+              <li class="nav-item aos-init aos-animate" data-aos-delay="50" data-aos="fade-down">
+                <a class="nav-link text-light active" href="/#ingressos">INGRESSOS</a>
+              </li>
+              <li class="nav-item aos-init aos-animate" data-aos-delay="100" data-aos="fade-down">
+                <a class="nav-link text-light" href="/#sobre">SOBRE</a>
+              </li>
+              <li class="nav-item aos-init aos-animate" data-aos-delay="150" data-aos="fade-down">
+                <a class="nav-link text-light" href="/#contato">CONTATO</a>
+              </li>
+              <li class="nav-item aos-init aos-animate" data-aos-delay="200" data-aos="fade-down">
+                <a class="nav-link text-light" href="#">CONTA</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center ">
+          <div class="col-md-6 p-lg-5 mx-auto my-5">
+            <img id="imgBanner" class="img-fluid" src="/img/2.jpg" height="450">
+            <hr class="featurette-divider">
+            <h1  class="display-5 fw-normal p-md-3" style="color:orange">Halloween - Edição especial</h1>
+            
+            <p class="lead fw-normal">Descubra a festa de música eletrônica mais hipnotizante e enigmática deste Halloween: Hipnose: Hallown Edition. 
+                <br>Entre em um mundo mágico de batidas pulsantes e melodias envolventes, enquanto DJs renomados comandam a pista de dança. Com uma decoração temática incrível e efeitos visuais deslumbrantes, esta festa é uma experiência alucinante que transcende o convencional.
+                <br> Prepare-se para ser hipnotizado por uma noite cheia de mistério e diversão. Garanta seu ingresso e deixe-se levar pelo encanto de Hipnose: Hallown Edition</p>
+            <div class="row">
+                <div class="col">
+                   <span style="color:red"> Classificação</span>
+                    <div>+18</div>
+
+                </div>
+                <div class="col">
+                    Data
+                    <div>
+                        29/07/2023 - 18:00 - 07:00
+                    </div>
+                    
+                </div>
+
+
+            </div>
+            <hr class="featurette-divider">
+            <div style="justify-content: center;"  class="row  row-cols-lg-2">
+
+              <div class="col">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h5 class="card-title">INGRESSOS</h5>
+                    <hr class="featurette-divider">
+                    <p class="card-text">1º LOTE</p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li style="margin:5px 5px 5px 5px;" class="list-group-item">INGRESSO INDIVIDUAL - R$ 80 </li>
+                    <li class="list-group-item">INGRESSO DUPLO - R$ 140 </li>
+                    <li class="list-group-item">INGRESSO MEIA - R$ 45 </li>
+                  </ul>
+                  <div class="card-footer">
+                    
+                    <a href="#" id="comprar" class="btn btn-primary">Comprar</a>
+
+                  </div>
+                </div>
+              </div>
+             
+            </div>
+
+
+            
+          </div>
+          <div class="product-device shadow-sm d-none d-md-block"></div>
+          <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+        </div>
+
+        <hr class="featurette-divider">
+      </main>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <script>
+  
+    </script>
+      <script>
+        
+        $(document).ready(function() {
+         $('#comprar').on('click', function(){
+            window.open("/checkout/1231", '_self');
+          })
+ 
+        });
+
+         const cards = document.querySelectorAll('.card-body');
+          
+          cards.forEach((card) => {
+            
+            card.addEventListener('mouseenter', () => {
+              
+              card.classList.add('aos-animate');
+            });
+        
+            card.addEventListener('mouseleave', () => {
+              card.classList.remove('aos-animate');
+            });
+          });
+
+       
+      </script>
+
+  </body>
+</html>
