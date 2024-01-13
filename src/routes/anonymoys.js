@@ -1,89 +1,74 @@
-var Recaptcha = require('express-recaptcha').RecaptchaV3
+// import { RecaptchaV3 } from 'express-recaptcha';
+import express from 'express';
+import supabase from '../../config/dataBase.js';
+// import authController from '../controllers/authController.js';
+// import { RecaptchaV3 } from 'express-recaptcha';
+// import app from '../.config/server.js';
+// import authController from '../controllers/authController.js';
 
-var chamaBot = require('../../config/configTelegram.js');
-module.exports = function(app){
+const route = express.Router();
 
-  var recaptcha = new Recaptcha(process.env.KEY_SITE_CAP_V2, process.env.KEY_PRIVATE_CAP_V2);
+// const recaptcha = new RecaptchaV3(process.env.KEY_SITE_CAP_V2, process.env.KEY_PRIVATE_CAP_V2);
 
-  app.get('/', async function(req, res){
-    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    console.log(`Endereço IP: ${ip}`);
-     res.render('index')
+route.get('/', async (req, res) => {
+  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  res.render('../view/index.ejs');
+});
 
-  });
+route.get('/info/:id', async (req, res) => {
+  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  console.log(`Endereço IP: ${ip}`);
+  res.render('ingresso');
+});
 
-  app.get('/info/:id', async function(req, res){
-    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    console.log(`Endereço IP: ${ip}`);
-     res.render('ingresso')
+route.get('/checkout/:id', async (req, res) => {
+  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  res.render('checkout');
+});
 
-  });
+route.get('/login/', async (req, res) => {
+  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  res.render('login');
+});
 
-  app.get('/checkout/:id', async function(req, res){
-    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-   
-     res.render('checkout')
+route.post('/login', async (req, res) => {
+  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  const { email, pass } = req.body;
 
-  });
-
-  // app.get('/login', async function(req, res){
-    
-  //   //app.app.controllers.anony_defaults.login(app, req, res);
-
-  // });
-
-  // app.get('/cadastro', async function(req, res){
-  //   app.app.controllers.anony_defaults.cadastro(app, req, res);
-
-    
-  // });
-
-
-
-
-  // //lado servidor  -------------------------------------===
-
-  app.get('/teste', async function(req, res){
-    //console.log(itemsModel.addItem('321312'))
-    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    console.log(`Endereço IP: ${ip}`);
-
-    
-  });
-  // app.post('/cadastro/sendtospace', recaptcha.middleware.verify, async function(req, res){
-
-  //   if (!req.recaptcha.error) {
-  //     // success code
-  //     app.app.controllers.anony_defaults.cadastro_salva(app, req, res);
-  //   } else {
-  //       // error code
-  //       console.log("error recptcha")
-  //       res.redirect('/cadastro')
-  //   }
-
-
-  // });
-
-  // app.post('/login', async function(req, res){
-  //   app.app.controllers.anony_defaults.login_auth(app, req, res);
-
-  // });
-
-
+  res.status(200);
   
-  // app.post('/recEmail' , async function(req, res){
+  //fazer alguma verificação para descobrir se a conexão é real antes de processa-la no servidor
+  // Verifique se o email fornecido tem o formato correto
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ message: 'O e-mail fornecido não é válido' });
+  }
+
+ try {
+   const { data, error } = await supabase.auth.signInWithPassword({
+     email: email,
+     password: pass,
+   }) 
+    if(data.role == authenticated)
+   if(error.status == 400){
     
-  //   app.app.controllers.anony_defaults.recSenha(app, req, res);
-
-  //   return
-  //  // req.session.destroy();
-  // });
+   }
   
+   return res.status(400).json( error);
 
+ } catch ([error]) {
+    //corta a conexão para evitar qualquer tipo de erro
+    console.log("ERRO LOGIN:"+Error);
+    return res.status(400).end();
 
+ }
 
-  
+});
 
+route.get('/teste', async (req, res) => {
+  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  console.log(`Endereço IP: ${ip}`);
+});
 
-
-}
+export default route;

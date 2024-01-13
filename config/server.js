@@ -1,55 +1,57 @@
-var express = require('express');
-var consign = require('consign');
-var bodyParser = require('body-parser');
-var helmet = require("helmet");
-var expressSession = require('express-session');
-var cookieParser = require('cookie-parser');
-const useragent = require('express-useragent');
+  import express from 'express';
+  import bodyParser from 'body-parser';
+  import helmet from 'helmet';
+  import expressSession from 'express-session';
+  import cookieParser from 'cookie-parser';
+  import useragent from 'express-useragent';
 
+  // Outros imports aqui, se necessário
 
-// const multer = require('multer');
-
-require('dotenv').config();
-
-console.log(process.env.BOT_TOKEN)
-var app = express();
-app.use(cookieParser());
-app.use(express.static('./public'));
-
-app.use(express.static(__dirname))
-app.use(helmet({contentSecurityPolicy: false, crossOriginResourcePolicy: false}));
-app.set('view engine', 'ejs');
-app.set('views', './src/view/');
-app.use(useragent.express());
-app.use(expressSession({
+  // Configurações do ambiente
+  const app = express();
+  // Configurações do aplicativo
+  app.use(cookieParser());
+  app.use(express.static('./public/'));
+  app.use(helmet({ contentSecurityPolicy: false, crossOriginResourcePolicy: false }));
+  app.set('view engine', 'ejs');
+  app.set('views', './src/view');
+  app.use(useragent.express());
+  app.use(expressSession({
     secret: 'Iiji$@#@#FKD@$',
     resave: false,
     saveUninitialized: true
-}));
+  }));
 
-//middlware sobre dados via post
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-
-app.get('*.vue', (req, res, next) => {
-    console.log(req)
-    res.type('application/javascript'); // Define o MIME type como JavaScript
-    next();
-  });
-consign()
-        .include('./src/routes')
-        //.then('config/dbFirebaseUsers.js')
-        // .then('config/dbFirebaseAdm.js') 
-        //.then('config/MercadoPago.js')   
-        .then('./src/models')
-        // .then('./botTelegram.js')
-        .then('./src/controllers')
-        .into(app);
-
-
- 
+  // Middleware sobre dados via post
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
+  // Configuração de rotas e outros módulos
+import route from '../src/routes/anonymoys.js';
+app.use('/', route);
 
-module.exports = app;
+  // import models from '../src/models';
+  // import controllers from '../src/controllers';
+
+  // app.use('/', route);
+  // route(route)
+  // route(app)
+  // dataBase(app)
+  // models(app)
+  // controllers(app)
+
+  // consign()
+  //   .include('./src/routes')
+  //   // .then('config/dataBase.js')
+  //   // // .then('config/dbFirebaseAdm.js') 
+  //   // // .then('config/MercadoPago.js')   
+  //   // .then('./src/models')
+  //   // // .then('./botTelegram.js')
+  //   // .then('./src/controllers')
+  //   .into(app);
+
+  // Inicia o servidor
+
+  export default app;
